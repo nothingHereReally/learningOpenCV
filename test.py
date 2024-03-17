@@ -8,3 +8,7 @@ else:
     cv2.imshow("spidy image", img)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
+    imgInfo = img.shape
+    print( "height: ", imgInfo[0] )
+    print( "width: ", imgInfo[1] )
+    print( "channels: ", imgInfo[2] )
