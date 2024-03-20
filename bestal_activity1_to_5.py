@@ -1,3 +1,5 @@
+import os
+from os.path import isfile
 import cv2
 import matplotlib.pyplot as plt
 
@@ -137,8 +139,48 @@ def activity3(imgfile1: str, imgfile2: str) -> None:
         cv2.waitKey(0)
         cv2.destroyAllWindows()
 
+def activity4(imgfile: str) -> None:
+    if os.path.isfile(imgfile):
+        rgb_img = cv2.imread(imgfile)
+        gry_img = cv2.cvtColor(rgb_img, cv2.COLOR_BGR2GRAY)
+        (_, bnw_img) = cv2.threshold(gry_img, 88, 255, cv2.THRESH_BINARY)
+        his_gry_img = cv2.calcHist([gry_img], [0], None, [256], (0, 256))
+
+        fig = plt.figure(figsize=(10, 5))
+
+        ax1 = fig.add_subplot(221)
+        ax1.imshow(cv2.cvtColor(rgb_img, cv2.COLOR_BGR2RGB))
+        ax1.set_title("orig RGB image")
+        ax1.axis("off")
+
+        ax2 = fig.add_subplot(222)
+        ax2.imshow(gry_img, cmap='gray')
+        ax2.set_title("grayscale of image")
+        ax2.axis("off")
+
+        ax3 = fig.add_subplot(223)
+        ax3.imshow(bnw_img, cmap='gray')
+        ax3.set_title("black and white")
+        ax3.axis("off")
+
+        ax4 = fig.add_subplot(224)
+        ax4.plot(his_gry_img, color='black')
+        ax4.set_xlabel("pixel value")
+        ax4.set_ylabel("frequency")
+        ax4.set_title("histogram of grayscale image")
+
+        plt.tight_layout()
+        plt.savefig("origRGB_grayScale_bnw_histogram.png")
+        plt.close()
+
+        cv2.imshow( "result activity 4", cv2.imread("./origRGB_grayScale_bnw_histogram.png") )
+        cv2.waitKey(0)
+        cv2.destroyAllWindows()
+    else:
+        print("image doesn't exist, or not the right dir")
 
 
 # activity1("./pic/spidyAtDoffice.jpg")
 # activity2("./spidyAtDoffice.jpg")
-activity3("./pic/spidyAtDoffice.jpg", "./pic/supernatural_004.png")
+# activity3("./pic/spidyAtDoffice.jpg", "./pic/supernatural_004.png")
+activity4("./pic/spidyAtDoffice.jpg")
