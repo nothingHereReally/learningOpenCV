@@ -54,8 +54,17 @@ def activity2(imgfile: str) -> None:
         print("pixel[44][44]( B, G, R): ", img[44][44])
         print("pixel[55][55]( B, G, R): ", img[55][55])
 
+def activity3(imgfile1: str, imgfile2: str) -> None:
+    img1 = cv2.imread(imgfile1)
+    img2 = cv2.imread(imgfile2)
+    cv2.imshow("image 1", img1)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+    cv2.imshow("image 2", img2)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
 
 
 # activity1("./spidyAtDoffice.jpg")
 # activity2("./spidyAtDoffice.jpg")
-# activity2("./supernatural_004.png")
+activity3("./spidyAtDoffice.jpg", "./supernatural_004.png")
