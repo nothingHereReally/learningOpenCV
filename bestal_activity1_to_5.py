@@ -1,4 +1,5 @@
 import cv2
+import matplotlib.pyplot as plt
 
 def activity1(imgfile: str) -> None:
     img = cv2.imread(imgfile)
@@ -57,12 +58,27 @@ def activity2(imgfile: str) -> None:
 def activity3(imgfile1: str, imgfile2: str) -> None:
     img1 = cv2.imread(imgfile1)
     img2 = cv2.imread(imgfile2)
-    cv2.imshow("image 1", img1)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
-    cv2.imshow("image 2", img2)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
+    if img1 is None and img2 is None:
+        print("image doesn't exist, or not the right dir")
+    else:
+        pass
+        cv2.imshow("image 1", img1)
+        cv2.waitKey(0)
+        cv2.destroyAllWindows()
+        cv2.imshow("image 2", img2)
+        cv2.waitKey(0)
+        cv2.destroyAllWindows()
+
+        gray_img1 = cv2.cvtColor(img1, cv2.COLOR_BGR2GRAY)
+        gray_img2 = cv2.cvtColor(img2, cv2.COLOR_BGR2GRAY)
+        histg1 = cv2.calcHist([gray_img1], [0], None, [256], [0, 256])
+        histg2 = cv2.calcHist([gray_img2], [0], None, [256], [0, 256])
+        plt.plot(histg1, color='black')
+        # plt.plot(histg2, color='red')
+        plt.xlabel('Pixel Value')
+        plt.ylabel('Frequency')
+        plt.title('Histogram of Grayscale Image')
+        plt.show()
 
 
 # activity1("./spidyAtDoffice.jpg")
