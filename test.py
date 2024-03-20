@@ -23,3 +23,8 @@ else:
     cv2.destroyAllWindows()
     imgInfo = img.shape
     print("shape: ", imgInfo)
+
+    (_, img) = cv2.threshold(img, 127, 255, cv2.THRESH_BINARY)
+    cv2.imshow("spidy image", img)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
