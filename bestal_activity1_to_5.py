@@ -180,6 +180,13 @@ def activity4(imgfile: str) -> None:
         print("image doesn't exist, or not the right dir")
 
 
+def activity5(imgfile: str) -> None:
+    if os.path.isfile(imgfile):
+        pass
+    else:
+        pass
+
+
 # activity1("./pic/spidyAtDoffice.jpg")
 # activity2("./spidyAtDoffice.jpg")
 # activity3("./pic/spidyAtDoffice.jpg", "./pic/supernatural_004.png")
