@@ -82,18 +82,49 @@ def activity3(imgfile1: str, imgfile2: str) -> None:
         img2_hist_r = cv2.calcHist([img2_r], [0], None, [256], [0, 256])
 
         plt.figure(figsize=(10, 5))
+
+        plt.subplot(1, 3, 1)
         plt.plot(img1_hist_b, color="blue")
+        plt.title("blue pixel from "+imgfile1)
+        plt.xlabel("pixel value")
+        plt.ylabel("frequency/quantity")
+
+        plt.subplot(1, 3, 2)
         plt.plot(img1_hist_g, color="green")
+        plt.title("green pixel")
+        plt.xlabel("pixel value")
+        plt.ylabel("frequency/quantity")
+
+        plt.subplot(1, 3, 3)
         plt.plot(img1_hist_r, color="red")
+        plt.title("red pixel")
+        plt.xlabel("pixel value")
+        plt.ylabel("frequency/quantity")
 
         plt.savefig('histogram_of_image_1.png')
         plt.close()
 
         plt.figure(figsize=(10, 5))
-        plt.plot(img2_hist_b, color="blue")
-        plt.plot(img2_hist_g, color="green")
-        plt.plot(img2_hist_r, color="red")
 
+        plt.subplot(1, 3, 1)
+        plt.plot(img2_hist_b, color="blue")
+        plt.title("blue pixel from "+imgfile2)
+        plt.xlabel("pixel value")
+        plt.ylabel("frequency/quantity")
+
+        plt.subplot(1, 3, 2)
+        plt.plot(img2_hist_g, color="green")
+        plt.title("green pixel")
+        plt.xlabel("pixel value")
+        plt.ylabel("frequency/quantity")
+
+        plt.subplot(1, 3, 3)
+        plt.plot(img2_hist_r, color="red")
+        plt.title("red pixel")
+        plt.xlabel("pixel value")
+        plt.ylabel("frequency/quantity")
+
+        plt.tight_layout()
         plt.savefig('histogram_of_image_2.png')
         plt.close()
 
