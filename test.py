@@ -1,30 +1,26 @@
 import cv2
-import numpy as np
+import matplotlib.pyplot as plt
 
-imgfile = "./spidyAtDoffice.jpg"
-img = cv2.imread(imgfile)
-if img is None:
-    print("image doesn't exist, or Atay, not the right dir")
-else:
-    cv2.imshow("spidy image", img)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
-    imgInfo = img.shape
-    print( "height: ", imgInfo[0] )
-    print( "width: ", imgInfo[1] )
-    print( "channels: ", imgInfo[2] )
+# Set Matplotlib backend to Agg
+plt.switch_backend('agg')
 
-    print( "pixel[",int(img.shape[0]/2),"][",int(img.shape[1]/2),"]: ", img[int(img.shape[0]/2)][int(img.shape[1]/2)])
-    print( "pixel[ 0 ][ 0 ]: ", img[0][0])
+# Load the image
+image = cv2.imread('./spidyAtDoffice.jpg')
 
-    img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    cv2.imshow("spidy image", img)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
-    imgInfo = img.shape
-    print("shape: ", imgInfo)
+# Convert the image to grayscale
+gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
-    (_, img) = cv2.threshold(img, 127, 255, cv2.THRESH_BINARY)
-    cv2.imshow("spidy image", img)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
+# Calculate the histogram
+histogram = cv2.calcHist([gray_image], [0], None, [256], [0, 256])
+
+# Plot the histogram
+plt.plot(histogram, color='black')
+plt.xlabel('Pixel Value')
+plt.ylabel('Frequency')
+plt.title('Histogram of Grayscale Image')
+
+# Save the plot as an image file
+plt.savefig('histogram.png')
+
+# Close the plot
+plt.close()
