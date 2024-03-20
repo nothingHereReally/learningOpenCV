@@ -22,4 +22,3 @@ def activity1(imgfile: str) -> None:
         imgInfo = img.shape
         print("shape(height, width): ", imgInfo)
 
-activity1("./spidyAtDoffice.jpg")
