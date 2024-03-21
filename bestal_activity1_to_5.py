@@ -182,7 +182,37 @@ def activity4(imgfile: str) -> None:
 
 def activity5(imgfile: str) -> None:
     if os.path.isfile(imgfile):
-        pass
+        img = cv2.imread(imgfile)
+
+        # RGB show image
+        cv2.imshow("spidy image", img)
+        cv2.waitKey(0)
+        cv2.destroyAllWindows()
+        imgInfo = img.shape
+        
+        # RGB show pixel
+        print( "pixel[ 0 ][ 0 ]( blue ): ", img[0][0][0])
+        print( "pixel[ 0 ][ 0 ]( green ): ", img[0][0][1])
+        print( "pixel[ 0 ][ 0 ]( red ): ", img[0][0][2])
+        
+        # grayscale show image
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        cv2.imshow("spidy image", img)
+        cv2.waitKey(0)
+        cv2.destroyAllWindows()
+
+        # black and white show image
+        # cv2.adaptiveThreshold(...)
+        (_, img) = cv2.threshold(img, 127, 255, cv2.THRESH_BINARY)
+        cv2.imshow("spidy image", img)
+        cv2.waitKey(0)
+        cv2.destroyAllWindows()
+
+        # pic info
+        print( "filename: ", imgfile)
+        print( "height: ", imgInfo[0] )
+        print( "width: ", imgInfo[1] )
+        print( "channels( 3 for rgb ): ", imgInfo[2] )
     else:
         pass
 
@@ -190,4 +220,5 @@ def activity5(imgfile: str) -> None:
 # activity1("./pic/spidyAtDoffice.jpg")
 # activity2("./spidyAtDoffice.jpg")
 # activity3("./pic/spidyAtDoffice.jpg", "./pic/supernatural_004.png")
-activity4("./pic/spidyAtDoffice.jpg")
+# activity4("./pic/spidyAtDoffice.jpg")
+activity5("./pic/spidyAtDoffice.jpg")
