@@ -1,5 +1,4 @@
 import os
-from os.path import isfile
 import cv2
 import matplotlib.pyplot as plt
 
@@ -222,4 +221,38 @@ def activity5(imgfile: str) -> None:
 # activity2("./spidyAtDoffice.jpg")
 # activity3("./pic/spidyAtDoffice.jpg", "./pic/supernatural_004.png")
 # activity4("./pic/spidyAtDoffice.jpg")
-activity5("./pic/spidyAtDoffice.jpg")
+# activity5("./pic/spidyAtDoffice.jpg")
+
+def main()->None:
+    chc: str = 'nothing'
+    while chc!='bye' and chc!='0':
+        print('1 for running activity 1')
+        print('2 for running activity 2')
+        print('3 for running activity 3')
+        print('4 for running activity 4')
+        print('5 for running activity 5')
+        print('0 or just type \'bye\' to exit')
+        chc = str( input("choose: ") )
+        print("-------------------------------")
+        match chc:
+            case '1':
+                activity1('./pic/spidyAtDoffice.jpg')
+            case '2':
+                activity2('./pic/spidyAtDoffice.jpg')
+            case '3':
+                activity3('./pic/spidyAtDoffice.jpg', './pic/supernatural_004.png')
+            case '4':
+                activity4('./pic/spidyAtDoffice.jpg')
+            case '5':
+                activity5('./pic/spidyAtDoffice.jpg')
+            case 'bye':
+                print("Bye now...")
+            case '0':
+                print("Bye now...")
+            case _:
+                print("Invalid input( only valid are 1, 2, 3, 4, 5, or 0 or bye)")
+        print("-------------------------------")
+
+if __name__ == "__main__":
+    main()
+
